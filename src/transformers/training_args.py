@@ -1702,14 +1702,6 @@ class TrainingArguments:
                         raise ValueError(
                             "Your setup doesn't support bf16/gpu. You need torch>=1.10, using Ampere GPU with cuda>=11.0"
                         )
-                    elif not is_torch_xpu_available():
-                        # xpu
-                        from .pytorch_utils import is_torch_greater_or_equal_than_1_12
-
-                        if not is_torch_greater_or_equal_than_1_12:
-                            raise ValueError(
-                                "Your setup doesn't support bf16/xpu. You need torch>=1.12, using Intel XPU/GPU with IPEX installed"
-                            )
 
         if self.fp16 and self.bf16:
             raise ValueError("At most one of fp16 and bf16 can be True, but not both")
