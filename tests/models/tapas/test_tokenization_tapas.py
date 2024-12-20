@@ -45,12 +45,6 @@ from transformers.testing_utils import (
 from ...test_tokenization_common import TokenizerTesterMixin, filter_non_english, merge_model_tokenizer_mappings
 
 
-if is_torch_available():
-    from transformers.pytorch_utils import is_torch_greater_or_equal_than_1_12
-else:
-    is_torch_greater_or_equal_than_1_12 = False
-
-
 @require_tokenizers
 @require_pandas
 class TapasTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
@@ -1048,7 +1042,6 @@ class TapasTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
                 # Do the same test as modeling common.
                 self.assertIn(0, output["token_type_ids"][0])
 
-    @unittest.skipIf(not is_torch_greater_or_equal_than_1_12, reason="Tapas is only available in torch v1.12+")
     @require_torch
     @slow
     def test_torch_encode_plus_sent_to_model(self):
