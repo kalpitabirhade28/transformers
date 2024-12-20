@@ -71,8 +71,6 @@ if is_torch_available():
     import torch
     import torch.distributed as dist
 
-    from .pytorch_utils import is_torch_greater_or_equal_than_2_0
-
 if is_accelerate_available():
     from accelerate.state import AcceleratorState, PartialState
     from accelerate.utils import DistributedType
@@ -1157,7 +1155,7 @@ class TrainingArguments:
         },
     )
     dataloader_prefetch_factor: Optional[int] = field(
-        default=None if not is_torch_available() or is_torch_greater_or_equal_than_2_0 else 2,
+        default=None,
         metadata={
             "help": (
                 "Number of batches loaded in advance by each worker. "
@@ -2049,7 +2047,7 @@ class TrainingArguments:
             self.dataloader_pin_memory = False
 
         if (
-            (not is_torch_available() or is_torch_greater_or_equal_than_2_0)
+            not is_torch_available()
             and self.dataloader_num_workers == 0
             and self.dataloader_prefetch_factor is not None
         ):
