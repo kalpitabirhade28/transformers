@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 from parameterized import parameterized
 
-from transformers import AddedToken, is_torch_available
+from transformers import AddedToken
 from transformers.models.tapas.tokenization_tapas import (
     VOCAB_FILES_NAMES,
     BasicTokenizer,

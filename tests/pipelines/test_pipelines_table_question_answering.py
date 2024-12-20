@@ -20,7 +20,6 @@ from transformers import (
     AutoTokenizer,
     TableQuestionAnsweringPipeline,
     TFAutoModelForTableQuestionAnswering,
-    is_torch_available,
     pipeline,
 )
 from transformers.testing_utils import (
